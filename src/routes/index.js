@@ -1,9 +1,14 @@
 // import session from './session';
-// import user from './user';
+import user from './user';
 // import message from './message';
-import lesson from './lesson';
+import lessons from './lessons';
+import login from './login';
+import pupils from './pupils';
 
 
 export default {
-  lesson,
+  user,
+  lessons,
+  login,
+  pupils,
 };
