@@ -5,15 +5,24 @@ https://github.com/rwieruch/node-express-postgresql-server
 thanks so much for the best tutorial on api's i found :-)
 (https://www.robinwieruch.de/postgres-express-setup-tutorial/)
 
-## GET Routes
+## prerequisites
+
+make sure you have postgresql installed
+enter the proper database connection settings in the .env file...
+
+### Routes
 
 - visit http://localhost:3000
-  - /lessons
-  - /lessons/1
-  - /pupils
-  - /pupils/1
+  - GET /lessons
+  - POST /lessons
+  - GET /lessons/1
+  - GET /pupils
+  - GET /pupils/1
+  - POST /pupils
+  - POST /login
+  - POST /notices
 
-### CURL
+#### CURL
 
 - Create a lesson with:
   - `curl -X POST -H "Content-Type:application/json" http://localhost:3000/lessons -d '{"name":"helloWorldLesson", "date":"1970-01-01", "venue":"onTheGreen", "frequency":"weekly", "duration":"30"}'`

@@ -16,13 +16,21 @@ router.get('/:lessonId', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  // console.log(JSON.parse(req.body.pupils));
   const lesson = await req.context.models.Lesson.create({
     name: req.body.name,
     date: req.body.date,
     venue: req.body.venue,
     frequency: req.body.frequency,
     duration: req.body.duration,
-    });
+    pupils: JSON.parse(req.body.pupils),
+  },
+  {
+    include: [
+      {model: req.context.models.Pupil},
+    ],
+  }
+  );
 
   return res.send(lesson);
 

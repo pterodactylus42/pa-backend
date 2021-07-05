@@ -17,10 +17,11 @@ const lesson = (sequelize, DataTypes) => {
         },    
     });
     
-        Lesson.associate = (models) => {
-            Lesson.hasMany(models.Pupil, { onDelete: 'CASCADE' });
-          };
-
+    Lesson.associate = (models) => {
+        Lesson.hasMany(models.Pupil, { onDelete: 'CASCADE' });
+        Lesson.hasMany(models.Notice, { onDelete: 'CASCADE' });
+    };
+    
     return Lesson;
   };
   

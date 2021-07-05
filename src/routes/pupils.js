@@ -18,7 +18,7 @@ router.get('/:pupilId', async (req, res) => {
 router.post('/', async (req, res) => {
   const pupil = await req.context.models.Pupil.create({
     firstname: req.body.firstname,
-    firstname: req.body.lastname,
+    lastname: req.body.lastname,
     });
   return res.send(pupil);
 });

@@ -33,11 +33,12 @@ app.use(async (req, res, next) => {
 // * Routes * //
 
 // app.use('/session', routes.session);
-app.use('/users', routes.user);
 // app.use('/messages', routes.message);
+app.use('/users', routes.user);
 app.use('/lessons', routes.lessons);
 app.use('/login', routes.login);
 app.use('/pupils', routes.pupils);
+app.use('/notices', routes.notices);
 
 // * Start * //
 
@@ -54,8 +55,10 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
 });
 
 // * Database Seeding * //
+// include takes an array of objects
 
 const createUsersWithMessages = async () => {
+  console.log('database seeding ....');
   await models.User.create(
     {
       username: 'guest',
@@ -84,11 +87,19 @@ const createUsersWithMessages = async () => {
           "firstname": "herman",
           "lastname": "melville",
         }
+      ],
+      notices: [
+        {
+          "content": "c major chord",
+        }
       ]
     },
     {
-      include: [models.Pupil],
-    },
+      include: [
+        {model: models.Pupil},
+        {model: models.Notice},
+      ],
+    }
   );
 
   await models.Lesson.create(
