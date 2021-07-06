@@ -8,10 +8,12 @@ router.get('/', async (req, res) => {
   return res.send(notices);
 });
 
-router.get('/:noticeId', async (req, res) => {
-  const notice = await req.context.models.Notice.findByPk(
-    req.params.noticeId,
-  );
+router.get('/:lessonId', async (req, res) => {
+  const notice = await req.context.models.Notice.findAll({
+    where: {
+        lessonId: req.params.lessonId,
+      }
+  });
   return res.send(notice);
 });
 
