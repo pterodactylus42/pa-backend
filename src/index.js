@@ -5,6 +5,11 @@ import express from 'express';
 import models, { sequelize } from './models';
 import routes from './routes';
 
+// jwt auth stuff
+const jwt = require('jsonwebtoken');
+const bodyParser = require('body-parser');
+const accessTokenSecret = 'bigpinkelephant';
+
 const app = express();
 
 // * Application-Level Middleware * //
@@ -26,6 +31,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(async (req, res, next) => {
   req.context = {
     models,
+    jwt,
+    accessTokenSecret,
   };
   next();
 });

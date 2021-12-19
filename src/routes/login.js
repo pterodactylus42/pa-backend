@@ -10,16 +10,27 @@ router.post('/', async (req, res) => {
   //console.log('identified by ' + req.body.password);
 
   // check if in database
-  const loginUser = await req.context.models.User.findByLogin(req.body.username);
-  if ( loginUser ) {
+  let loginUser = null;
+  if(!!req.body.username) {
+    console.log('i wonder if i can find ' + req.body.username + ' in the database... \n');
+    loginUser = await req.context.models.User.findByLogin(req.body.username);
+  }
+  if ( !!loginUser ) {
+    console.log('hey there, ' + req.body.username + '! Let\'s see if you entered your correct password...\n');
     // check password
     if ( loginUser.password === req.body.password ) {
-        return res.status(200).send(loginUser.username);
+      console.log('hi friend, come in :-)\n');
+      const accessToken = req.context.jwt.sign({ username:loginUser.username }, req.context.accessTokenSecret);
+        //return res.status(200).send(loginUser.username);
+        res.json({
+          accessToken
+        });
       } else {
-        return res.status(401).send('password incorrect for user ' + loginUser.username);        
+        console.log('bugger off, you nerd.\n');
+        return res.status(401).send('password incorrect for user ' + loginUser.username + '\n');        
       }
   } else {
-    return res.status(401).send('unknown user ');        
+    return res.status(401).send('unknown user');        
   }
 });
 
