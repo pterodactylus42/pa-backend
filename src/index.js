@@ -41,11 +41,13 @@ app.use(async (req, res, next) => {
 
 // app.use('/session', routes.session);
 // app.use('/messages', routes.message);
+
 app.use('/users', routes.user);
 app.use('/lessons', routes.lessons);
 app.use('/login', routes.login);
 app.use('/pupils', routes.pupils);
 app.use('/notices', routes.notices);
+app.use('/register', routes.register);
 
 // * Start * //
 

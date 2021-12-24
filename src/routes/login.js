@@ -23,7 +23,8 @@ router.post('/', async (req, res) => {
       const accessToken = req.context.jwt.sign({ username:loginUser.username }, req.context.accessTokenSecret);
         //return res.status(200).send(loginUser.username);
         res.json({
-          accessToken
+          token: accessToken,
+	  user: loginUser.username
         });
       } else {
         console.log('bugger off, you nerd.\n');

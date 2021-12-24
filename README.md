@@ -30,3 +30,7 @@ enter the proper database connection settings in the .env file...
 - Delete a lesson with:
   - `curl -X DELETE -H "Content-Type:application/json" http://localhost:3000/lessons/1`
 
+##### Starting
+
+run
+npm run start

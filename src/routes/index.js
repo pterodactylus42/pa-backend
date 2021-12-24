@@ -5,7 +5,7 @@ import lessons from './lessons';
 import login from './login';
 import pupils from './pupils';
 import notices from './notices';
-
+import register from './register';
 
 export default {
   user,
@@ -13,4 +13,5 @@ export default {
   login,
   pupils,
   notices,
+  register,
 };
